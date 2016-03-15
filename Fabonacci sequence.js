@@ -1,4 +1,5 @@
-//Fabonacci sequence 
+//Fabonacci sequence, use function and a gloable variable i to control the level of the sequence
+var i=0;
 var fabonacci = function (a, b) {
     if(a==0 && b==0) {
         if (i==1) {
@@ -17,6 +18,8 @@ var fabonacci = function (a, b) {
        }
 }
 }
+var i=10;
+fabonacci(0,0);
 //Or use for loop to easily implement it since the array size is extendible
 var i;
 var fib = []; // Initialize array!
