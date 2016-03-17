@@ -7,11 +7,23 @@ var validateBracketsFormat=function (a){
         rel.push(a[i]);
     else 
         {
-        if (rel.indexOf(a[i]))
-            rel.splice(rel.indexOf(a[i]),1);
-        else 
-            return false;
+        if (a[i]==']'){
+            if (rel.indexOf('[')!=-1)
+                rel.splice(rel.indexOf('['),1);
+            else 
+                return false;}
+        else if (a[i]=='}'){
+            if (rel.indexOf('{')!=-1)
+                rel.splice(rel.indexOf('{'),1);
+            else 
+                return false;}
+        else if (a[i]==')'){
+            if (rel.indexOf('(')!=-1)
+                rel.splice(rel.indexOf('('),1);
+            else 
+                return false;}
     }
    }
-   return true;
+   if (rel.length===0)
+       return true;
 }
