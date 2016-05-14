@@ -31,3 +31,20 @@ function binaryIndexOf(searchElement) {
  
     return -1; //not find
 }
+//recursive version binary search
+function binarySearch(narray, target){
+	narray=narray.sort((a,b)=>a-b);
+	var midpos= Math.floor(narray.length/2);
+
+	if (narray[midpos]===target){
+		return midpos;
+	}
+
+	if(narray[midpos]>target){
+		binarySearch(narray.slice(0,midpos),target);
+	}
+	else{
+		binarySearch(narray.slice(midpos+1),target);
+	}
+    return -1;
+}
