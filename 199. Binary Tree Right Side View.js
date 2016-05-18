@@ -48,3 +48,39 @@ var rightSideView = function(root) {
     
     return result;
 };
+//another solution which is more efficient, from left to right, when it is the last node of current level, push
+var rightSideView = function(root) {
+    var answer = [];
+
+    if(root === null){
+        return answer;
+    }
+
+    var queue = [];
+    queue.push(root);
+    var curLvlCnt = queue.length;
+    var nextLvlCnt = 0;
+    
+    while(queue.length !== 0){
+        var node = queue.shift();
+        curLvlCnt--;
+        
+        if(node.left){
+            queue.push(node.left);
+            nextLvlCnt++;
+        }
+        if(node.right){
+            queue.push(node.right);
+            nextLvlCnt++;
+        }
+        
+        if(curLvlCnt <= 0){
+            answer.push(node.val);
+            curLvlCnt = nextLvlCnt;
+            nextLvlCnt = 0;
+        }
+        
+    }
+    
+    return answer;
+}
