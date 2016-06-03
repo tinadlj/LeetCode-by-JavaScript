@@ -96,6 +96,8 @@ function findNext (board,i,j,letter,used){
     
     return false;
 }
+
+//more iteration but shorter code
 var exist = function(board, word) {
     var used=[];
     if (word.length<=0){
