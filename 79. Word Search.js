@@ -96,3 +96,45 @@ function findNext (board,i,j,letter,used){
     
     return false;
 }
+var exist = function(board, word) {
+    var used=[];
+    if (word.length<=0){
+        return false;
+    }
+    
+    for(var i=0;i<board.length;i++){
+        used[i]=[];
+        for (var j=0;j<board[0].length;j++){
+            used[i][j]=false;
+        }
+    }
+    
+    for(i=0;i<board.length;i++){
+        for (j=0;j<board[0].length;j++){
+            if (findNext (board,i,j,word,used,0)){
+                return true;
+            }
+        }
+    }
+    return false;
+    
+};
+
+function findNext (board,i,j,letter,used,index){
+    if (index===letter.length){
+        return true;
+    }
+    
+    if (i<0 || j<0 || i>=board.length || j>= board[0].length || used[i][j] || board[i][j]!==letter[index]){
+        return false;
+    }
+    
+    used[i][j]=true;
+    if (findNext(board,i+1,j,letter,used,index+1)){return true;}
+    if (findNext(board,i-1,j,letter,used,index+1)){return true;}
+    if (findNext(board,i,j+1,letter,used,index+1)){return true;}
+    if (findNext(board,i,j-1,letter,used,index+1)){return true;}
+    used[i][j]=false;
+    
+    return false;
+}
