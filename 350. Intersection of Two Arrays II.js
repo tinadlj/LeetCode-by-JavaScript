@@ -1,3 +1,31 @@
+// Two pointer for sorted array
+/**
+ * @param {number[]} nums1
+ * @param {number[]} nums2
+ * @return {number[]}
+ */
+var intersect = function(nums1, nums2) {
+    var result=[];
+    nums1.sort((a,b)=>a-b);
+    nums2.sort((a,b)=>a-b);
+    var p1=0;
+    var p2=0;
+    
+    while(p1<nums1.length && p2<nums2.length){
+        if (nums1[p1]===nums2[p2]){
+            result.push(nums1[p1]);
+            p1++;
+            p2++;
+        }else if (nums1[p1]>nums2[p2]){
+            p2++;
+        }else{
+            p1++;
+        }
+    }
+    
+    return result;
+};
+
 /**
  * @param {number[]} nums1
  * @param {number[]} nums2
@@ -5,20 +33,15 @@
  */
 var intersect = function(nums1, nums2) {
       
-    var result=[];
+   var result=[];
     
-    for(var i=0;i<nums1.length && nums2.length>0;){
+    for(var i=0;i<nums1.length && nums2.length>0;i++){
         t=nums2.indexOf(nums1[i]);
         
-        if (t===-1){
-            i++;
-            continue;
+        if (t!=-1){
+            result.push(nums1[i]);
+            nums2.splice(t,1);
         }
-        
-        result.push(nums1[i]);
-        nums1.splice(i,1);
-        
-        nums2.splice(t,1);
     }
     return result;
 };
