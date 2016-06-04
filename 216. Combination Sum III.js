@@ -10,13 +10,9 @@ var combinationSum3 = function(k, n) {
     if (k<1 || k>9 || k>n){
         return result;
     }
-    for (var i=1;i<=9;i++){
-        if (i<n){
-            t.push(i);
-            combinationSub2(t,n-i,result,k-1,i+1);
-            t.pop();
-        }
-    }
+   
+    combinationSub2(t,n,result,k,1);
+            
     return result;
 };
 function combinationSub2(t,n,result,k,j){
